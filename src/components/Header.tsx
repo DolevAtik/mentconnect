@@ -8,7 +8,7 @@ export const Header = () => {
         <div className="flex items-center space-x-8">
           <div className="flex items-center space-x-2">
             <div className="w-8 h-8 rounded-lg bg-gradient-primary"></div>
-            <span className="text-xl font-bold text-foreground">HiConnect</span>
+            <span className="text-xl font-bold text-foreground">MentConnect</span>
           </div>
           
           <nav className="hidden md:flex items-center space-x-6">

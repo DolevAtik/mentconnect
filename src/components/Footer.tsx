@@ -7,7 +7,7 @@ export const Footer = () => {
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <div className="w-8 h-8 rounded-lg bg-gradient-primary"></div>
-              <span className="text-xl font-bold">HiConnect</span>
+              <span className="text-xl font-bold">MentConnect</span>
             </div>
             <p className="text-white/80 text-sm leading-relaxed">
               הפלטפורמה המובילה בישראל לחיבור בין מנטורים ומחפשי ליווי מקצועי
@@ -49,7 +49,7 @@ export const Footer = () => {
         </div>
 
         <div className="border-t border-white/20 mt-8 pt-8 text-center text-sm text-white/60">
-          <p>&copy; 2024 HiConnect. כל הזכויות שמורות.</p>
+          <p>&copy; 2024 MentConnect. כל הזכויות שמורות.</p>
         </div>
       </div>
     </footer>
