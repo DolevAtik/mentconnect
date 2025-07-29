@@ -17,14 +17,14 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 215 25% 20%;
 
-    /* Modern professional blue for trust and credibility */
-    --primary: 210 100% 45%;
+    /* Modern professional colors inspired by Fiverr */
+    --primary: 29 100% 58%; /* Fiverr-inspired orange */
     --primary-foreground: 0 0% 100%;
-    --primary-light: 210 100% 55%;
-    --primary-dark: 210 100% 35%;
+    --primary-light: 29 100% 68%;
+    --primary-dark: 29 100% 48%;
 
-    /* Warm teal accent for approachability */
-    --secondary: 180 65% 55%;
+    /* Professional dark green for trust */
+    --secondary: 171 100% 40%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 220 15% 96%;
@@ -43,15 +43,15 @@ All colors MUST be HSL.
     --input: 220 15% 94%;
     --ring: 210 100% 45%;
 
-    /* Gradients for modern look */
-    --gradient-primary: linear-gradient(135deg, hsl(210 100% 45%), hsl(180 65% 55%));
-    --gradient-hero: linear-gradient(135deg, hsl(210 100% 48%) 0%, hsl(180 65% 58%) 100%);
+    /* Professional gradients inspired by Fiverr */
+    --gradient-primary: linear-gradient(135deg, hsl(29 100% 58%), hsl(29 100% 48%));
+    --gradient-hero: linear-gradient(135deg, hsl(29 100% 58%) 0%, hsl(171 100% 40%) 100%);
     --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(220 15% 98%) 100%);
     
-    /* Shadows for depth */
-    --shadow-soft: 0 2px 8px -2px hsl(210 100% 45% / 0.1);
-    --shadow-medium: 0 4px 20px -4px hsl(210 100% 45% / 0.15);
-    --shadow-large: 0 10px 40px -10px hsl(210 100% 45% / 0.2);
+    /* Professional shadows */
+    --shadow-soft: 0 2px 8px -2px hsl(29 100% 58% / 0.1);
+    --shadow-medium: 0 4px 20px -4px hsl(29 100% 58% / 0.15);
+    --shadow-large: 0 10px 40px -10px hsl(29 100% 58% / 0.2);
 
     --radius: 0.5rem;
 
