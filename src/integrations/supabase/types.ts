@@ -10,11 +10,183 @@ export type Database = {
   // Allows to automatically instanciate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "12.2.3 (519615d)"
+    PostgrestVersion: "13.0.4"
   }
   public: {
     Tables: {
-      [_ in never]: never
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          bio: string | null
+          company: string | null
+          cover_image_url: string | null
+          created_at: string | null
+          display_name: string | null
+          first_name: string | null
+          github_url: string | null
+          hourly_rate: number | null
+          id: string
+          is_available: boolean | null
+          is_verified: boolean | null
+          languages: string[] | null
+          last_name: string | null
+          linkedin_url: string | null
+          location: string | null
+          phone: string | null
+          specializations: string[] | null
+          title: string | null
+          twitter_url: string | null
+          updated_at: string | null
+          user_id: string
+          user_type: string | null
+          website: string | null
+          years_experience: number | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          bio?: string | null
+          company?: string | null
+          cover_image_url?: string | null
+          created_at?: string | null
+          display_name?: string | null
+          first_name?: string | null
+          github_url?: string | null
+          hourly_rate?: number | null
+          id?: string
+          is_available?: boolean | null
+          is_verified?: boolean | null
+          languages?: string[] | null
+          last_name?: string | null
+          linkedin_url?: string | null
+          location?: string | null
+          phone?: string | null
+          specializations?: string[] | null
+          title?: string | null
+          twitter_url?: string | null
+          updated_at?: string | null
+          user_id: string
+          user_type?: string | null
+          website?: string | null
+          years_experience?: number | null
+        }
+        Update: {
+          avatar_url?: string | null
+          bio?: string | null
+          company?: string | null
+          cover_image_url?: string | null
+          created_at?: string | null
+          display_name?: string | null
+          first_name?: string | null
+          github_url?: string | null
+          hourly_rate?: number | null
+          id?: string
+          is_available?: boolean | null
+          is_verified?: boolean | null
+          languages?: string[] | null
+          last_name?: string | null
+          linkedin_url?: string | null
+          location?: string | null
+          phone?: string | null
+          specializations?: string[] | null
+          title?: string | null
+          twitter_url?: string | null
+          updated_at?: string | null
+          user_id?: string
+          user_type?: string | null
+          website?: string | null
+          years_experience?: number | null
+        }
+        Relationships: []
+      }
+      reviews: {
+        Row: {
+          comment: string | null
+          created_at: string | null
+          id: string
+          mentor_id: string
+          rating: number
+          reviewer_id: string
+        }
+        Insert: {
+          comment?: string | null
+          created_at?: string | null
+          id?: string
+          mentor_id: string
+          rating: number
+          reviewer_id: string
+        }
+        Update: {
+          comment?: string | null
+          created_at?: string | null
+          id?: string
+          mentor_id?: string
+          rating?: number
+          reviewer_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reviews_mentor_id_fkey"
+            columns: ["mentor_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["user_id"]
+          },
+          {
+            foreignKeyName: "reviews_reviewer_id_fkey"
+            columns: ["reviewer_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["user_id"]
+          },
+        ]
+      }
+      services: {
+        Row: {
+          category: string | null
+          created_at: string | null
+          description: string | null
+          duration_minutes: number | null
+          id: string
+          is_active: boolean | null
+          mentor_id: string
+          price: number
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string | null
+          description?: string | null
+          duration_minutes?: number | null
+          id?: string
+          is_active?: boolean | null
+          mentor_id: string
+          price: number
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          category?: string | null
+          created_at?: string | null
+          description?: string | null
+          duration_minutes?: number | null
+          id?: string
+          is_active?: boolean | null
+          mentor_id?: string
+          price?: number
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "services_mentor_id_fkey"
+            columns: ["mentor_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["user_id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
