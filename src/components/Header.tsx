@@ -21,12 +21,21 @@ export const Header = () => {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <div className="flex items-center space-x-8">
-          <div className="flex items-center space-x-2">
+          <button 
+            onClick={() => navigate("/")} 
+            className="flex items-center space-x-2 hover:opacity-80 transition-opacity"
+          >
             <div className="w-8 h-8 rounded-lg bg-gradient-primary"></div>
             <span className="text-xl font-bold text-foreground">MentConnect</span>
-          </div>
+          </button>
           
           <nav className="hidden md:flex items-center space-x-6">
+            <button 
+              onClick={() => navigate("/")} 
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              דף הבית
+            </button>
             <button 
               onClick={() => navigate("/mentors")} 
               className="text-muted-foreground hover:text-foreground transition-colors"
@@ -106,6 +115,12 @@ export const Header = () => {
                 </div>
                 
                 <nav className="flex flex-col space-y-4">
+                  <button 
+                    onClick={() => {navigate("/"); setIsOpen(false);}} 
+                    className="text-right text-muted-foreground hover:text-foreground transition-colors py-2"
+                  >
+                    דף הבית
+                  </button>
                   <button 
                     onClick={() => {navigate("/mentors"); setIsOpen(false);}} 
                     className="text-right text-muted-foreground hover:text-foreground transition-colors py-2"

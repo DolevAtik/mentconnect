@@ -17,8 +17,13 @@ export const Hero = () => {
       
       {/* Content */}
       <div className="relative container mx-auto px-4 text-white animate-fade-in">
-        <div className="max-w-2xl">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="mb-4">
+            <p className="text-lg md:text-xl text-white/90 font-medium tracking-wider">
+              Your Journey. Their Wisdom. One Connection.
+            </p>
+          </div>
+          <h1 className="text-4xl md:text-7xl font-bold mb-6 leading-tight">
             מצא את המנטור המושלם עבורך
           </h1>
           

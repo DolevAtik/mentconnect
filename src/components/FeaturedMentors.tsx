@@ -13,7 +13,6 @@ const mentors = [
     expertise: ["React", "TypeScript", "Node.js", "System Design"],
     location: "תל אביב",
     experience: "8 שנות",
-    price: "₪200/שעה",
     responseTime: "תוך שעה"
   },
   {
@@ -25,7 +24,6 @@ const mentors = [
     expertise: ["Product Management", "Strategy", "Leadership", "Analytics"],
     location: "הרצליה",
     experience: "12 שנות",
-    price: "₪350/שעה",
     responseTime: "תוך 2 שעות"
   },
   {
@@ -37,7 +35,6 @@ const mentors = [
     expertise: ["UX Design", "Figma", "User Research", "Design Systems"],
     location: "תל אביב",
     experience: "6 שנות",
-    price: "₪250/שעה",
     responseTime: "תוך 30 דקות"
   },
 ];
@@ -57,7 +54,11 @@ export const FeaturedMentors = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {mentors.map((mentor, index) => (
-            <MentorCard key={index} {...mentor} />
+            <MentorCard 
+              key={index} 
+              {...mentor} 
+              price="חינם"
+            />
           ))}
         </div>
 

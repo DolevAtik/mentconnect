@@ -6,7 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Search, Filter, MapPin, Clock, Star } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Search, Filter, MapPin, Clock, Star, Briefcase, Calendar } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
@@ -22,7 +23,8 @@ const mentors = [
     expertise: ["React", "TypeScript", "Node.js", "MongoDB"],
     location: "תל אביב",
     experience: "8 שנות",
-    price: "חינם",
+    experienceYears: 8,
+    category: "פיתוח תוכנה",
     responseTime: "2 שעות",
     bio: "מפתח תוכנה מנוסה עם התמחות בפיתוח Full Stack"
   },
@@ -36,7 +38,8 @@ const mentors = [
     expertise: ["Figma", "Adobe XD", "User Research", "Prototyping"],
     location: "חיפה",
     experience: "6 שנות",
-    price: "חינם",
+    experienceYears: 6,
+    category: "עיצוב",
     responseTime: "4 שעות",
     bio: "מעצבת UX/UI עם ניסיון רב בסטארטאפים"
   },
@@ -50,9 +53,40 @@ const mentors = [
     expertise: ["Product Strategy", "Analytics", "Agile", "Leadership"],
     location: "ירושלים",
     experience: "10 שנות",
-    price: "חינם",
+    experienceYears: 10,
+    category: "ניהול מוצר",
     responseTime: "6 שעות",
     bio: "מנהל מוצר בכיר עם ניסיון בחברות טכנולוגיה גדולות"
+  },
+  {
+    id: "4",
+    name: "שרה דוד", 
+    title: "Marketing Director",
+    image: "/src/assets/mentor-1.jpg",
+    rating: 4.6,
+    reviewsCount: 92,
+    expertise: ["Digital Marketing", "Social Media", "Content Strategy", "SEO"],
+    location: "תל אביב",
+    experience: "5 שנות",
+    experienceYears: 5,
+    category: "שיווק",
+    responseTime: "3 שעות",
+    bio: "מנהלת שיווק דיגיטלי עם התמחות ברשתות חברתיות"
+  },
+  {
+    id: "5",
+    name: "אלון גרין", 
+    title: "Data Scientist",
+    image: "/src/assets/mentor-2.jpg",
+    rating: 4.9,
+    reviewsCount: 143,
+    expertise: ["Python", "Machine Learning", "Statistics", "SQL"],
+    location: "הרצליה",
+    experience: "7 שנות",
+    experienceYears: 7,
+    category: "מדעי הנתונים",
+    responseTime: "5 שעות",
+    bio: "מדען נתונים עם התמחות בלמידת מכונה ובינה מלאכותית"
   }
 ];
 
@@ -60,14 +94,17 @@ const MentorSearch = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredMentors, setFilteredMentors] = useState(mentors);
   const [selectedExpertise, setSelectedExpertise] = useState<string[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [selectedExperience, setSelectedExperience] = useState<string>("");
+  const [selectedLocation, setSelectedLocation] = useState<string>("");
   const { toast } = useToast();
 
-  // Get all unique expertise areas
-  const allExpertise = Array.from(
-    new Set(mentors.flatMap(mentor => mentor.expertise))
-  );
+  // Get all unique values for filters
+  const allExpertise = Array.from(new Set(mentors.flatMap(mentor => mentor.expertise)));
+  const allCategories = Array.from(new Set(mentors.map(mentor => mentor.category)));
+  const allLocations = Array.from(new Set(mentors.map(mentor => mentor.location)));
 
-  // Filter mentors based on search query and selected expertise
+  // Filter mentors based on all criteria
   useEffect(() => {
     let filtered = mentors;
 
@@ -77,7 +114,8 @@ const MentorSearch = () => {
         mentor.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         mentor.expertise.some(skill => 
           skill.toLowerCase().includes(searchQuery.toLowerCase())
-        )
+        ) ||
+        mentor.category.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
 
@@ -89,8 +127,26 @@ const MentorSearch = () => {
       );
     }
 
+    if (selectedCategory) {
+      filtered = filtered.filter(mentor => mentor.category === selectedCategory);
+    }
+
+    if (selectedExperience) {
+      if (selectedExperience === "1-3") {
+        filtered = filtered.filter(mentor => mentor.experienceYears >= 1 && mentor.experienceYears <= 3);
+      } else if (selectedExperience === "4-7") {
+        filtered = filtered.filter(mentor => mentor.experienceYears >= 4 && mentor.experienceYears <= 7);
+      } else if (selectedExperience === "8+") {
+        filtered = filtered.filter(mentor => mentor.experienceYears >= 8);
+      }
+    }
+
+    if (selectedLocation) {
+      filtered = filtered.filter(mentor => mentor.location === selectedLocation);
+    }
+
     setFilteredMentors(filtered);
-  }, [searchQuery, selectedExpertise]);
+  }, [searchQuery, selectedExpertise, selectedCategory, selectedExperience, selectedLocation]);
 
   const toggleExpertise = (skill: string) => {
     setSelectedExpertise(prev =>
@@ -103,6 +159,9 @@ const MentorSearch = () => {
   const clearFilters = () => {
     setSearchQuery("");
     setSelectedExpertise([]);
+    setSelectedCategory("");
+    setSelectedExperience("");
+    setSelectedLocation("");
   };
 
   return (
@@ -147,9 +206,58 @@ const MentorSearch = () => {
                   סנן מנטורים לפי תחומי התמחות
                 </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-4">
+              <CardContent className="space-y-6">
                 <div>
-                  <h3 className="font-semibold mb-3">תחומי התמחות</h3>
+                  <h3 className="font-semibold mb-3">תחום התמחות</h3>
+                  <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="בחר תחום" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="">כל התחומים</SelectItem>
+                      {allCategories.map((category) => (
+                        <SelectItem key={category} value={category}>
+                          {category}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div>
+                  <h3 className="font-semibold mb-3">שנות ניסיון</h3>
+                  <Select value={selectedExperience} onValueChange={setSelectedExperience}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="בחר ניסיון" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="">כל רמות הניסיון</SelectItem>
+                      <SelectItem value="1-3">1-3 שנים</SelectItem>
+                      <SelectItem value="4-7">4-7 שנים</SelectItem>
+                      <SelectItem value="8+">8+ שנים</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div>
+                  <h3 className="font-semibold mb-3">מיקום</h3>
+                  <Select value={selectedLocation} onValueChange={setSelectedLocation}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="בחר מיקום" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="">כל המיקומים</SelectItem>
+                      {allLocations.map((location) => (
+                        <SelectItem key={location} value={location}>
+                          {location}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div>
+                  <h3 className="font-semibold mb-3">כישורים ספציפיים</h3>
                   <div className="flex flex-wrap gap-2">
                     {allExpertise.map((skill) => (
                       <Badge
@@ -164,7 +272,7 @@ const MentorSearch = () => {
                   </div>
                 </div>
                 
-                {(searchQuery || selectedExpertise.length > 0) && (
+                {(searchQuery || selectedExpertise.length > 0 || selectedCategory || selectedExperience || selectedLocation) && (
                   <Button 
                     variant="outline" 
                     onClick={clearFilters}
@@ -209,7 +317,7 @@ const MentorSearch = () => {
                     expertise={mentor.expertise}
                     location={mentor.location}
                     experience={mentor.experience}
-                    price={mentor.price}
+                    price="חינם"
                     responseTime={mentor.responseTime}
                   />
                 ))}
