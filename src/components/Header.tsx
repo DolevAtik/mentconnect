@@ -1,13 +1,16 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Search, Menu, LogOut, User } from "lucide-react";
+import { Search, Menu, LogOut, User, X } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export const Header = () => {
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleSignOut = async () => {
     await signOut();
@@ -24,23 +27,34 @@ export const Header = () => {
           </div>
           
           <nav className="hidden md:flex items-center space-x-6">
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+            <button 
+              onClick={() => navigate("/mentors")} 
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
               מנטורים
-            </a>
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-              תוכניות
-            </a>
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+            </button>
+            <button 
+              onClick={() => navigate("/how-it-works")} 
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
               איך זה עובד
-            </a>
+            </button>
+            <button 
+              onClick={() => navigate("/about")} 
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              אודותינו
+            </button>
+            <button 
+              onClick={() => navigate("/contact")} 
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              יצירת קשר
+            </button>
           </nav>
         </div>
 
         <div className="flex items-center space-x-4">
-          <Button variant="ghost" size="icon" className="md:hidden">
-            <Search className="h-5 w-5" />
-          </Button>
-          
           <div className="hidden md:flex items-center space-x-2">
             {user ? (
               <DropdownMenu>
@@ -77,9 +91,95 @@ export const Header = () => {
             )}
           </div>
           
-          <Button variant="ghost" size="icon" className="md:hidden">
-            <Menu className="h-5 w-5" />
-          </Button>
+          {/* Mobile Menu */}
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" className="md:hidden">
+                <Menu className="h-5 w-5" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-80">
+              <div className="flex flex-col space-y-6 mt-6">
+                <div className="flex items-center space-x-2">
+                  <div className="w-8 h-8 rounded-lg bg-gradient-primary"></div>
+                  <span className="text-xl font-bold text-foreground">MentConnect</span>
+                </div>
+                
+                <nav className="flex flex-col space-y-4">
+                  <button 
+                    onClick={() => {navigate("/mentors"); setIsOpen(false);}} 
+                    className="text-right text-muted-foreground hover:text-foreground transition-colors py-2"
+                  >
+                    מנטורים
+                  </button>
+                  <button 
+                    onClick={() => {navigate("/how-it-works"); setIsOpen(false);}} 
+                    className="text-right text-muted-foreground hover:text-foreground transition-colors py-2"
+                  >
+                    איך זה עובד
+                  </button>
+                  <button 
+                    onClick={() => {navigate("/about"); setIsOpen(false);}} 
+                    className="text-right text-muted-foreground hover:text-foreground transition-colors py-2"
+                  >
+                    אודותינו
+                  </button>
+                  <button 
+                    onClick={() => {navigate("/contact"); setIsOpen(false);}} 
+                    className="text-right text-muted-foreground hover:text-foreground transition-colors py-2"
+                  >
+                    יצירת קשר
+                  </button>
+                  <button 
+                    onClick={() => {navigate("/faq"); setIsOpen(false);}} 
+                    className="text-right text-muted-foreground hover:text-foreground transition-colors py-2"
+                  >
+                    שאלות נפוצות
+                  </button>
+                </nav>
+                
+                <div className="border-t pt-6">
+                  {user ? (
+                    <div className="flex flex-col space-y-4">
+                      <Button 
+                        variant="ghost" 
+                        onClick={() => {navigate(`/profile/${user.id}`); setIsOpen(false);}}
+                        className="justify-start"
+                      >
+                        <User className="mr-2 h-4 w-4" />
+                        הפרופיל שלי
+                      </Button>
+                      <Button 
+                        variant="ghost" 
+                        onClick={() => {handleSignOut(); setIsOpen(false);}}
+                        className="justify-start"
+                      >
+                        <LogOut className="mr-2 h-4 w-4" />
+                        התנתק
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className="flex flex-col space-y-4">
+                      <Button 
+                        variant="ghost" 
+                        onClick={() => {navigate("/auth"); setIsOpen(false);}}
+                        className="w-full"
+                      >
+                        התחברות
+                      </Button>
+                      <Button 
+                        variant="hero" 
+                        onClick={() => {navigate("/auth"); setIsOpen(false);}}
+                        className="w-full"
+                      >
+                        הצטרפות כמנטור
+                      </Button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </header>
