@@ -34,22 +34,24 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         
         // אם זה המשתמש התחבר לראשונה (sign-up עם Google), הפנה להשלמת פרופיל
         if (event === 'SIGNED_IN' && session?.user && window.location.pathname === '/') {
-          // בדוק אם יש כבר פרופיל מלא
-          try {
-            const { data } = await supabase
-              .from('profiles')
-              .select('first_name, last_name, user_type')
-              .eq('user_id', session.user.id)
-              .single();
-            
-            // אם אין פרופיל מלא, הפנה להשלמת פרופיל
-            if (!data || !data.first_name || !data.last_name || !data.user_type) {
+          // השתמש ב-setTimeout כדי להימנע מבעיות deadlock
+          setTimeout(async () => {
+            try {
+              const { data } = await supabase
+                .from('profiles')
+                .select('first_name, last_name, user_type')
+                .eq('user_id', session.user.id)
+                .single();
+              
+              // אם אין פרופיל מלא, הפנה להשלמת פרופיל
+              if (!data || !data.first_name || !data.last_name || !data.user_type) {
+                window.location.href = '/complete-profile';
+              }
+            } catch (error) {
+              // אם אין פרופיל בכלל, הפנה להשלמת פרופיל
               window.location.href = '/complete-profile';
             }
-          } catch (error) {
-            // אם אין פרופיל בכלל, הפנה להשלמת פרופיל
-            window.location.href = '/complete-profile';
-          }
+          }, 0);
         }
       }
     );
