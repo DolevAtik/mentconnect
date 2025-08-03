@@ -244,6 +244,33 @@ export type Database = {
         }
         Relationships: []
       }
+      rate_limits: {
+        Row: {
+          created_at: string | null
+          id: string
+          operation_count: number | null
+          operation_type: string
+          user_id: string
+          window_start: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          operation_count?: number | null
+          operation_type: string
+          user_id: string
+          window_start?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          operation_count?: number | null
+          operation_type?: string
+          user_id?: string
+          window_start?: string | null
+        }
+        Relationships: []
+      }
       reviews: {
         Row: {
           comment: string | null
@@ -285,6 +312,36 @@ export type Database = {
             referencedColumns: ["user_id"]
           },
         ]
+      }
+      security_audit_log: {
+        Row: {
+          created_at: string | null
+          event_details: Json | null
+          event_type: string
+          id: string
+          ip_address: unknown | null
+          user_agent: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          event_details?: Json | null
+          event_type: string
+          id?: string
+          ip_address?: unknown | null
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          event_details?: Json | null
+          event_type?: string
+          id?: string
+          ip_address?: unknown | null
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
       }
       services: {
         Row: {
@@ -534,6 +591,15 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      check_rate_limit: {
+        Args: {
+          _user_id: string
+          _operation_type: string
+          _max_operations: number
+          _window_minutes: number
+        }
+        Returns: boolean
+      }
       get_user_role: {
         Args: { _user_id?: string }
         Returns: Database["public"]["Enums"]["app_role"]
@@ -543,6 +609,24 @@ export type Database = {
           _user_id: string
           _role: Database["public"]["Enums"]["app_role"]
         }
+        Returns: boolean
+      }
+      log_security_event: {
+        Args: {
+          _user_id: string
+          _event_type: string
+          _event_details?: Json
+          _ip_address?: unknown
+          _user_agent?: string
+        }
+        Returns: undefined
+      }
+      sanitize_content: {
+        Args: { input_text: string }
+        Returns: string
+      }
+      validate_text_length: {
+        Args: { input_text: string; max_length: number }
         Returns: boolean
       }
     }
