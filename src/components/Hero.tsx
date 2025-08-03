@@ -29,7 +29,7 @@ export const Hero = () => {
               Your Journey. Their Wisdom. One Connection.
             </p>
           </div>
-          <h2 className="text-4xl md:text-7xl font-bold mb-6 leading-tight">
+          <h2 className="text-4xl md:text-7xl font-bold mb-6 leading-tight whitespace-nowrap">
             מצא את המנטור המושלם עבורך
           </h2>
           
