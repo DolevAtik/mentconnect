@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import logo from "@/assets/logo.png";
 
 export const Header = () => {
   const { user, signOut } = useAuth();
@@ -23,19 +24,12 @@ export const Header = () => {
         <div className="flex items-center space-x-8">
           <button 
             onClick={() => navigate("/")} 
-            className="flex items-center space-x-2 hover:opacity-80 transition-opacity"
+            className="flex items-center hover:opacity-80 transition-opacity"
           >
-            <div className="w-8 h-8 rounded-lg bg-gradient-primary"></div>
-            <span className="text-xl font-bold text-foreground">MentConnect</span>
+            <img src={logo} alt="MentConnect" className="h-10" />
           </button>
           
           <nav className="hidden md:flex items-center space-x-8">
-            <button 
-              onClick={() => navigate("/")} 
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              דף הבית
-            </button>
             <button 
               onClick={() => navigate("/mentors")} 
               className="text-muted-foreground hover:text-foreground transition-colors"
@@ -109,18 +103,11 @@ export const Header = () => {
             </SheetTrigger>
             <SheetContent side="right" className="w-80">
               <div className="flex flex-col space-y-6 mt-6">
-                <div className="flex items-center space-x-2">
-                  <div className="w-8 h-8 rounded-lg bg-gradient-primary"></div>
-                  <span className="text-xl font-bold text-foreground">MentConnect</span>
+                <div className="flex items-center">
+                  <img src={logo} alt="MentConnect" className="h-10" />
                 </div>
                 
                 <nav className="flex flex-col space-y-4">
-                  <button 
-                    onClick={() => {navigate("/"); setIsOpen(false);}} 
-                    className="text-right text-muted-foreground hover:text-foreground transition-colors py-2"
-                  >
-                    דף הבית
-                  </button>
                   <button 
                     onClick={() => {navigate("/mentors"); setIsOpen(false);}} 
                     className="text-right text-muted-foreground hover:text-foreground transition-colors py-2"
