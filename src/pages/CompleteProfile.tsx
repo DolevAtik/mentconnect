@@ -263,14 +263,14 @@ const CompleteProfile = () => {
               </div>
             </div>
 
-            {formData.user_type === "mentor" && (
+              {formData.user_type === "mentor" && (
               <div className="bg-gradient-to-r from-yellow-50 to-orange-50 p-4 rounded-lg border border-yellow-200">
                 <div className="flex items-center gap-2 mb-2">
                   <Star className="w-5 h-5 text-yellow-500" />
                   <h4 className="font-semibold text-yellow-800">הצטרפת כמנטור!</h4>
                 </div>
                 <p className="text-sm text-yellow-700">
-                  תוכל להוסיף פרטים נוספים כמו התמחויות, תעריפים ושנות ניסיון בעריכת הפרופיל לאחר ההרשמה.
+                  תוכל להוסיף פרטים נוספים כמו התמחויות ושנות ניסיון בעריכת הפרופיל לאחר ההרשמה. כל השירותים באתר בחינם!
                 </p>
               </div>
             )}
