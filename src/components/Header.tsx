@@ -21,7 +21,7 @@ export const Header = () => {
   return <header className="sticky top-0 z-50 w-full border-b bg-gradient-to-r from-primary to-secondary backdrop-blur h-24">
       <div className="container mx-auto px-4 h-full">
         <div className="flex items-center justify-between h-full">
-        <div className="flex items-center justify-between flex-1 backdrop-blur-sm border border-white/30 rounded-none bg-transparent px-[99px] py-[4px] my-[40px] mx-[80px]">
+        <div className="flex items-center justify-between flex-1 px-[99px] py-[4px] my-[40px] mx-[80px]">
           <button onClick={() => navigate("/")} className="text-lg transition-colors font-bold text-blue-950 mx-0 px-0 py-[13px]">
             דף הבית
           </button>
