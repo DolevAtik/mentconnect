@@ -29,7 +29,7 @@ export const Header = () => {
             <span className="text-xl font-bold text-foreground">MentConnect</span>
           </button>
           
-          <nav className="hidden md:flex items-center space-x-6">
+          <nav className="hidden md:flex items-center space-x-8">
             <button 
               onClick={() => navigate("/")} 
               className="text-muted-foreground hover:text-foreground transition-colors"
