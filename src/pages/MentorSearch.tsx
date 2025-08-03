@@ -127,11 +127,11 @@ const MentorSearch = () => {
       );
     }
 
-    if (selectedCategory) {
+    if (selectedCategory && selectedCategory !== "all") {
       filtered = filtered.filter(mentor => mentor.category === selectedCategory);
     }
 
-    if (selectedExperience) {
+    if (selectedExperience && selectedExperience !== "all") {
       if (selectedExperience === "1-3") {
         filtered = filtered.filter(mentor => mentor.experienceYears >= 1 && mentor.experienceYears <= 3);
       } else if (selectedExperience === "4-7") {
@@ -141,7 +141,7 @@ const MentorSearch = () => {
       }
     }
 
-    if (selectedLocation) {
+    if (selectedLocation && selectedLocation !== "all") {
       filtered = filtered.filter(mentor => mentor.location === selectedLocation);
     }
 
@@ -159,9 +159,9 @@ const MentorSearch = () => {
   const clearFilters = () => {
     setSearchQuery("");
     setSelectedExpertise([]);
-    setSelectedCategory("");
-    setSelectedExperience("");
-    setSelectedLocation("");
+    setSelectedCategory("all");
+    setSelectedExperience("all");
+    setSelectedLocation("all");
   };
 
   return (
@@ -214,7 +214,7 @@ const MentorSearch = () => {
                       <SelectValue placeholder="בחר תחום" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">כל התחומים</SelectItem>
+                      <SelectItem value="all">כל התחומים</SelectItem>
                       {allCategories.map((category) => (
                         <SelectItem key={category} value={category}>
                           {category}
@@ -231,7 +231,7 @@ const MentorSearch = () => {
                       <SelectValue placeholder="בחר ניסיון" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">כל רמות הניסיון</SelectItem>
+                      <SelectItem value="all">כל רמות הניסיון</SelectItem>
                       <SelectItem value="1-3">1-3 שנים</SelectItem>
                       <SelectItem value="4-7">4-7 שנים</SelectItem>
                       <SelectItem value="8+">8+ שנים</SelectItem>
@@ -246,7 +246,7 @@ const MentorSearch = () => {
                       <SelectValue placeholder="בחר מיקום" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">כל המיקומים</SelectItem>
+                      <SelectItem value="all">כל המיקומים</SelectItem>
                       {allLocations.map((location) => (
                         <SelectItem key={location} value={location}>
                           {location}
@@ -272,7 +272,7 @@ const MentorSearch = () => {
                   </div>
                 </div>
                 
-                {(searchQuery || selectedExpertise.length > 0 || selectedCategory || selectedExperience || selectedLocation) && (
+                {(searchQuery || selectedExpertise.length > 0 || (selectedCategory && selectedCategory !== "all") || (selectedExperience && selectedExperience !== "all") || (selectedLocation && selectedLocation !== "all")) && (
                   <Button 
                     variant="outline" 
                     onClick={clearFilters}
