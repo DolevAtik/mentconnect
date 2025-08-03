@@ -89,7 +89,7 @@ export const Header = () => {
                   התחברות
                 </Button>
                 <Button variant="outline" onClick={() => navigate("/auth")} className="bg-white text-primary hover:bg-white/90 border-white shadow-lg font-semibold">
-                  הצטרפות כמנטור
+                  הרשמה
                 </Button>
               </>
             )}
