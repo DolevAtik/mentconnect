@@ -23,9 +23,6 @@ export const Header = () => {
       <div className="container mx-auto px-4 h-full">
         <div className="flex items-center justify-between h-full">
         <div className="flex items-center gap-6">
-          <div className="flex items-center mr-8">
-            <img src={logoNew} alt="MentConnect" className="h-20 w-auto" />
-          </div>
           <button 
             onClick={() => navigate("/")} 
             className="text-lg font-semibold text-white hover:text-white/80 transition-colors"
@@ -191,6 +188,11 @@ export const Header = () => {
               </div>
             </SheetContent>
           </Sheet>
+          
+          {/* Logo בפינה הימנית */}
+          <div className="flex items-center">
+            <img src={logoNew} alt="MentConnect" className="h-20 w-auto" />
+          </div>
         </div>
         </div>
       </div>
