@@ -26,7 +26,7 @@ export const CTA = () => {
             <Button 
               variant="outline" 
               size="lg" 
-              className="border-white/30 text-white hover:bg-white/10 px-8 py-3 text-lg"
+              className="border-white text-white hover:bg-white/20 bg-white/10 px-8 py-3 text-lg"
             >
               הצטרף כמנטור
               <Users className="mr-2 h-5 w-5" />
