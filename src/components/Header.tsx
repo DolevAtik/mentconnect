@@ -66,10 +66,10 @@ export const Header = () => {
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu> : <>
-                <Button variant="ghost" onClick={() => navigate("/auth")} className="bg-white/10 hover:bg-white/20 border border-white/30 shadow-md text-slate-950 text-sm">
+                <Button variant="ghost" onClick={() => navigate("/auth")} className="bg-white/10 hover:bg-white/20 border border-white/30 shadow-md text-slate-950 text-2xl font-bold">
                   התחברות
                 </Button>
-                <Button variant="outline" onClick={() => navigate("/auth")} className="bg-white text-primary hover:bg-white/90 border-white shadow-lg font-semibold text-sm">
+                <Button variant="outline" onClick={() => navigate("/auth")} className="bg-white text-primary hover:bg-white/90 border-white shadow-lg text-2xl font-bold">
                   הרשמה
                 </Button>
               </>}
