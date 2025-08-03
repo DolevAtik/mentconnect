@@ -141,7 +141,7 @@ const Profile = () => {
     <div className="min-h-screen bg-background">
       <Header />
       {/* Cover Image */}
-      <div className="h-64 bg-gradient-hero relative mt-20">
+      <div className="h-64 bg-gradient-hero relative mt-24">
         {profile.cover_image_url && (
           <img 
             src={profile.cover_image_url} 

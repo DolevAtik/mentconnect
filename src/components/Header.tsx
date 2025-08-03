@@ -19,12 +19,12 @@ export const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 h-20">
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 h-24">
       <div className="container mx-auto px-4 h-full">
         <div className="flex items-center justify-between h-full">
         <div className="flex items-center gap-6">
           <div className="flex items-center">
-            <img src={logoNew} alt="MentConnect" className="h-12 w-auto" />
+            <img src={logoNew} alt="MentConnect" className="h-16 w-auto" />
           </div>
           <button 
             onClick={() => navigate("/")} 

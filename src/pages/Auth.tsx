@@ -201,7 +201,7 @@ const Auth = () => {
   return (
     <div className="min-h-screen bg-gradient-hero">
       <Header />
-      <div className="flex items-center justify-center p-4 pt-24">
+      <div className="flex items-center justify-center p-4 pt-28">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <div className="flex items-center justify-center space-x-2 mb-4">

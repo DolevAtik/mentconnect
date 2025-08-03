@@ -254,7 +254,7 @@ const ProfileEdit = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <div className="max-w-4xl mx-auto p-6 pt-28">
+      <div className="max-w-4xl mx-auto p-6 pt-32">
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-2">עריכת פרופיל</h1>
           <p className="text-muted-foreground">עדכן את הפרטים שלך כדי שאחרים יוכלו להכיר אותך טוב יותר</p>

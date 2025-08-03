@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Search, ArrowLeft } from "lucide-react";
 import heroImage from "@/assets/hero-image.jpg";
+import logoNew from "@/assets/logo-new.png";
 
 export const Hero = () => {
   return (
@@ -18,6 +19,9 @@ export const Hero = () => {
       {/* Content */}
       <div className="relative container mx-auto px-4 text-white animate-fade-in">
         <div className="max-w-4xl mx-auto text-center">
+          <div className="mb-8 flex justify-center">
+            <img src={logoNew} alt="MentConnect" className="h-20 w-auto" />
+          </div>
           <div className="mb-4">
             <p className="text-lg md:text-xl text-white/90 font-medium tracking-wider">
               Your Journey. Their Wisdom. One Connection.
