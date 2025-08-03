@@ -21,15 +21,15 @@ export const Header = () => {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <div className="flex items-center space-x-8">
+        <div className="flex items-center space-x-12">
           <button 
             onClick={() => navigate("/")} 
-            className="flex items-center hover:opacity-80 transition-opacity"
+            className="text-xl font-bold text-foreground hover:text-primary transition-colors"
           >
-            <img src={logo} alt="MentConnect" className="h-10" />
+            דף הבית
           </button>
           
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-12">
             <button 
               onClick={() => navigate("/mentors")} 
               className="text-muted-foreground hover:text-foreground transition-colors"
@@ -57,8 +57,8 @@ export const Header = () => {
           </nav>
         </div>
 
-        <div className="flex items-center space-x-4">
-          <div className="hidden md:flex items-center space-x-2">
+        <div className="flex items-center space-x-6">
+          <div className="hidden md:flex items-center space-x-4">
             {user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -101,10 +101,10 @@ export const Header = () => {
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-80">
+              <SheetContent side="right" className="w-80">
               <div className="flex flex-col space-y-6 mt-6">
                 <div className="flex items-center">
-                  <img src={logo} alt="MentConnect" className="h-10" />
+                  <span className="text-xl font-bold text-foreground">דף הבית</span>
                 </div>
                 
                 <nav className="flex flex-col space-y-4">
