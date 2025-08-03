@@ -25,7 +25,7 @@ export const Header = () => {
         <div className="flex items-center justify-between flex-1 bg-white/20 backdrop-blur-sm rounded-lg p-3 border border-white/30">
           <button 
             onClick={() => navigate("/")} 
-            className="text-lg font-semibold text-white hover:text-white/80 transition-colors"
+            className="text-lg font-semibold text-primary hover:text-primary/80 transition-colors"
           >
             דף הבית
           </button>
@@ -33,25 +33,25 @@ export const Header = () => {
           <nav className="hidden md:flex items-center gap-12 ml-auto mr-8">
             <button 
               onClick={() => navigate("/mentors")} 
-              className="text-white/90 hover:text-white transition-colors px-4 py-2"
+              className="text-primary hover:text-primary/80 transition-colors px-4 py-2"
             >
               מנטורים
             </button>
             <button 
               onClick={() => navigate("/how-it-works")} 
-              className="text-white/90 hover:text-white transition-colors px-4 py-2"
+              className="text-primary hover:text-primary/80 transition-colors px-4 py-2"
             >
               איך זה עובד
             </button>
             <button 
               onClick={() => navigate("/about")} 
-              className="text-white/90 hover:text-white transition-colors px-4 py-2"
+              className="text-primary hover:text-primary/80 transition-colors px-4 py-2"
             >
               אודותינו
             </button>
             <button 
               onClick={() => navigate("/contact")} 
-              className="text-white/90 hover:text-white transition-colors px-4 py-2"
+              className="text-primary hover:text-primary/80 transition-colors px-4 py-2"
             >
               יצירת קשר
             </button>
