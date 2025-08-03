@@ -19,11 +19,18 @@ export const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <div className="flex items-center gap-16">
-          <button onClick={() => navigate("/")} className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
-            <img src={logoNew} alt="MentConnect" className="h-8 w-auto" />
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 h-20">
+      <div className="container mx-auto px-4 h-full">
+        <div className="flex items-center justify-between h-full">
+        <div className="flex items-center gap-6">
+          <div className="flex items-center">
+            <img src={logoNew} alt="MentConnect" className="h-12 w-auto" />
+          </div>
+          <button 
+            onClick={() => navigate("/")} 
+            className="text-lg font-semibold text-foreground hover:text-primary transition-colors"
+          >
+            דף הבית
           </button>
           
           <nav className="hidden md:flex items-center gap-12">
@@ -184,6 +191,7 @@ export const Header = () => {
               </div>
             </SheetContent>
           </Sheet>
+        </div>
         </div>
       </div>
     </header>
