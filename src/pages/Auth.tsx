@@ -31,6 +31,31 @@ const Auth = () => {
     checkUser();
   }, [navigate]);
 
+  const validatePassword = (password: string) => {
+    const minLength = 8;
+    const hasUppercase = /[A-Z]/.test(password);
+    const hasLowercase = /[a-z]/.test(password);
+    const hasDigit = /\d/.test(password);
+    const hasSymbol = /[!@#$%^&*()_+\-=\[\]{};':"\\|<>?,./`~]/.test(password);
+
+    if (password.length < minLength) {
+      return `הסיסמה חייבת להכיל לפחות ${minLength} תווים`;
+    }
+    if (!hasUppercase) {
+      return "הסיסמה חייבת להכיל לפחות אות גדולה אחת";
+    }
+    if (!hasLowercase) {
+      return "הסיסמה חייבת להכיל לפחות אות קטנה אחת";
+    }
+    if (!hasDigit) {
+      return "הסיסמה חייבת להכיל לפחות ספרה אחת";
+    }
+    if (!hasSymbol) {
+      return "הסיסמה חייבת להכיל לפחות סימן מיוחד אחד";
+    }
+    return null;
+  };
+
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !password || !firstName || !lastName) {
@@ -38,6 +63,17 @@ const Auth = () => {
         variant: "destructive",
         title: "שגיאה",
         description: "אנא מלא את כל השדות הנדרשים",
+      });
+      return;
+    }
+
+    // Validate password strength
+    const passwordError = validatePassword(password);
+    if (passwordError) {
+      toast({
+        variant: "destructive",
+        title: "סיסמה חלשה",
+        description: passwordError,
       });
       return;
     }
@@ -256,7 +292,7 @@ const Auth = () => {
                       onChange={(e) => setPassword(e.target.value)}
                       disabled={loading}
                       required
-                      minLength={6}
+                      minLength={8}
                     />
                   </div>
                   <div className="space-y-2">
