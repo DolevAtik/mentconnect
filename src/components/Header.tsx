@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import logo from "@/assets/logo.png";
+import logoNew from "@/assets/logo-new.png";
 
 export const Header = () => {
   const { user, signOut } = useAuth();
@@ -22,11 +22,8 @@ export const Header = () => {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <div className="flex items-center gap-16">
-          <button 
-            onClick={() => navigate("/")} 
-            className="text-xl font-bold text-foreground hover:text-primary transition-colors"
-          >
-            דף הבית
+          <button onClick={() => navigate("/")} className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
+            <img src={logoNew} alt="MentConnect" className="h-8 w-auto" />
           </button>
           
           <nav className="hidden md:flex items-center gap-12">
