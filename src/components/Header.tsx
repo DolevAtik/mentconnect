@@ -21,7 +21,7 @@ export const Header = () => {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <div className="flex items-center space-x-12">
+        <div className="flex items-center gap-16">
           <button 
             onClick={() => navigate("/")} 
             className="text-xl font-bold text-foreground hover:text-primary transition-colors"
@@ -29,36 +29,36 @@ export const Header = () => {
             דף הבית
           </button>
           
-          <nav className="hidden md:flex items-center space-x-12">
+          <nav className="hidden md:flex items-center gap-12">
             <button 
               onClick={() => navigate("/mentors")} 
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="text-muted-foreground hover:text-foreground transition-colors px-4 py-2"
             >
               מנטורים
             </button>
             <button 
               onClick={() => navigate("/how-it-works")} 
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="text-muted-foreground hover:text-foreground transition-colors px-4 py-2"
             >
               איך זה עובד
             </button>
             <button 
               onClick={() => navigate("/about")} 
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="text-muted-foreground hover:text-foreground transition-colors px-4 py-2"
             >
               אודותינו
             </button>
             <button 
               onClick={() => navigate("/contact")} 
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="text-muted-foreground hover:text-foreground transition-colors px-4 py-2"
             >
               יצירת קשר
             </button>
           </nav>
         </div>
 
-        <div className="flex items-center space-x-6">
-          <div className="hidden md:flex items-center space-x-4">
+        <div className="flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-6">
             {user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
