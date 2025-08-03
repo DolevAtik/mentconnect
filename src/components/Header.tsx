@@ -7,52 +7,36 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import logoNew from "@/assets/logo-new.png";
-
 export const Header = () => {
-  const { user, signOut } = useAuth();
+  const {
+    user,
+    signOut
+  } = useAuth();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-
   const handleSignOut = async () => {
     await signOut();
     navigate("/");
   };
-
-  return (
-    <header className="sticky top-0 z-50 w-full border-b bg-gradient-to-r from-primary to-secondary backdrop-blur h-24">
+  return <header className="sticky top-0 z-50 w-full border-b bg-gradient-to-r from-primary to-secondary backdrop-blur h-24">
       <div className="container mx-auto px-4 h-full">
         <div className="flex items-center justify-between h-full">
-        <div className="flex items-center justify-between flex-1 bg-white/20 backdrop-blur-sm rounded-lg px-2 py-1 border border-white/30">
-          <button 
-            onClick={() => navigate("/")} 
-            className="text-lg font-semibold text-primary hover:text-primary/80 transition-colors"
-          >
+        <div className="flex items-center justify-between flex-1 backdrop-blur-sm border border-white/30 rounded-none bg-transparent px-[99px] py-[4px] mx-[80px] my-[40px]">
+          <button onClick={() => navigate("/")} className="text-lg font-semibold text-primary hover:text-primary/80 transition-colors">
             דף הבית
           </button>
           
           <nav className="hidden md:flex items-center gap-12 ml-auto mr-8">
-            <button 
-              onClick={() => navigate("/mentors")} 
-              className="text-white/90 hover:text-white transition-colors px-4 py-2"
-            >
+            <button onClick={() => navigate("/mentors")} className="text-white/90 hover:text-white transition-colors px-4 py-2">
               מנטורים
             </button>
-            <button 
-              onClick={() => navigate("/how-it-works")} 
-              className="text-white/90 hover:text-white transition-colors px-4 py-2"
-            >
+            <button onClick={() => navigate("/how-it-works")} className="text-white/90 hover:text-white transition-colors px-4 py-2">
               איך זה עובד
             </button>
-            <button 
-              onClick={() => navigate("/about")} 
-              className="text-white/90 hover:text-white transition-colors px-4 py-2"
-            >
+            <button onClick={() => navigate("/about")} className="text-white/90 hover:text-white transition-colors px-4 py-2">
               אודותינו
             </button>
-            <button 
-              onClick={() => navigate("/contact")} 
-              className="text-white/90 hover:text-white transition-colors px-4 py-2"
-            >
+            <button onClick={() => navigate("/contact")} className="text-white/90 hover:text-white transition-colors px-4 py-2">
               יצירת קשר
             </button>
           </nav>
@@ -60,8 +44,7 @@ export const Header = () => {
 
         <div className="flex items-center gap-8">
           <div className="hidden md:flex items-center gap-6">
-            {user ? (
-              <DropdownMenu>
+            {user ? <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" className="relative h-10 w-10 rounded-full hover:bg-white/10">
                     <Avatar className="h-10 w-10">
@@ -82,17 +65,14 @@ export const Header = () => {
                     התנתק
                   </DropdownMenuItem>
                 </DropdownMenuContent>
-              </DropdownMenu>
-            ) : (
-              <>
+              </DropdownMenu> : <>
                 <Button variant="ghost" onClick={() => navigate("/auth")} className="text-black bg-white/10 hover:bg-white/20 border border-white/30 shadow-md">
                   התחברות
                 </Button>
                 <Button variant="outline" onClick={() => navigate("/auth")} className="bg-white text-primary hover:bg-white/90 border-white shadow-lg font-semibold">
                   הרשמה
                 </Button>
-              </>
-            )}
+              </>}
           </div>
           
           {/* Mobile Menu */}
@@ -105,85 +85,77 @@ export const Header = () => {
               <SheetContent side="right" className="w-80">
               <div className="flex flex-col space-y-6 mt-6">
                 <div className="flex items-center">
-                  <button 
-                    onClick={() => {navigate("/"); setIsOpen(false);}} 
-                    className="text-xl font-bold text-foreground hover:text-primary transition-colors"
-                  >
+                  <button onClick={() => {
+                    navigate("/");
+                    setIsOpen(false);
+                  }} className="text-xl font-bold text-foreground hover:text-primary transition-colors">
                     דף הבית
                   </button>
                 </div>
                 
                 <nav className="flex flex-col space-y-4">
-                  <button 
-                    onClick={() => {navigate("/mentors"); setIsOpen(false);}} 
-                    className="text-right text-muted-foreground hover:text-foreground transition-colors py-2"
-                  >
+                  <button onClick={() => {
+                    navigate("/mentors");
+                    setIsOpen(false);
+                  }} className="text-right text-muted-foreground hover:text-foreground transition-colors py-2">
                     מנטורים
                   </button>
-                  <button 
-                    onClick={() => {navigate("/how-it-works"); setIsOpen(false);}} 
-                    className="text-right text-muted-foreground hover:text-foreground transition-colors py-2"
-                  >
+                  <button onClick={() => {
+                    navigate("/how-it-works");
+                    setIsOpen(false);
+                  }} className="text-right text-muted-foreground hover:text-foreground transition-colors py-2">
                     איך זה עובד
                   </button>
-                  <button 
-                    onClick={() => {navigate("/about"); setIsOpen(false);}} 
-                    className="text-right text-muted-foreground hover:text-foreground transition-colors py-2"
-                  >
+                  <button onClick={() => {
+                    navigate("/about");
+                    setIsOpen(false);
+                  }} className="text-right text-muted-foreground hover:text-foreground transition-colors py-2">
                     אודותינו
                   </button>
-                  <button 
-                    onClick={() => {navigate("/contact"); setIsOpen(false);}} 
-                    className="text-right text-muted-foreground hover:text-foreground transition-colors py-2"
-                  >
+                  <button onClick={() => {
+                    navigate("/contact");
+                    setIsOpen(false);
+                  }} className="text-right text-muted-foreground hover:text-foreground transition-colors py-2">
                     יצירת קשר
                   </button>
-                  <button 
-                    onClick={() => {navigate("/faq"); setIsOpen(false);}} 
-                    className="text-right text-muted-foreground hover:text-foreground transition-colors py-2"
-                  >
+                  <button onClick={() => {
+                    navigate("/faq");
+                    setIsOpen(false);
+                  }} className="text-right text-muted-foreground hover:text-foreground transition-colors py-2">
                     שאלות נפוצות
                   </button>
                 </nav>
                 
                 <div className="border-t pt-6">
-                  {user ? (
-                    <div className="flex flex-col space-y-4">
-                      <Button 
-                        variant="ghost" 
-                        onClick={() => {navigate(`/profile/${user.id}`); setIsOpen(false);}}
-                        className="justify-start"
-                      >
+                  {user ? <div className="flex flex-col space-y-4">
+                      <Button variant="ghost" onClick={() => {
+                      navigate(`/profile/${user.id}`);
+                      setIsOpen(false);
+                    }} className="justify-start">
                         <User className="mr-2 h-4 w-4" />
                         הפרופיל שלי
                       </Button>
-                      <Button 
-                        variant="ghost" 
-                        onClick={() => {handleSignOut(); setIsOpen(false);}}
-                        className="justify-start"
-                      >
+                      <Button variant="ghost" onClick={() => {
+                      handleSignOut();
+                      setIsOpen(false);
+                    }} className="justify-start">
                         <LogOut className="mr-2 h-4 w-4" />
                         התנתק
                       </Button>
-                    </div>
-                  ) : (
-                    <div className="flex flex-col space-y-4">
-                      <Button 
-                        variant="ghost" 
-                        onClick={() => {navigate("/auth"); setIsOpen(false);}}
-                        className="w-full"
-                      >
+                    </div> : <div className="flex flex-col space-y-4">
+                      <Button variant="ghost" onClick={() => {
+                      navigate("/auth");
+                      setIsOpen(false);
+                    }} className="w-full">
                         התחברות
                       </Button>
-                      <Button 
-                        variant="hero" 
-                        onClick={() => {navigate("/auth"); setIsOpen(false);}}
-                        className="w-full"
-                      >
+                      <Button variant="hero" onClick={() => {
+                      navigate("/auth");
+                      setIsOpen(false);
+                    }} className="w-full">
                         הצטרפות כמנטור
                       </Button>
-                    </div>
-                  )}
+                    </div>}
                 </div>
               </div>
             </SheetContent>
@@ -196,6 +168,5 @@ export const Header = () => {
         </div>
         </div>
       </div>
-    </header>
-  );
+    </header>;
 };
