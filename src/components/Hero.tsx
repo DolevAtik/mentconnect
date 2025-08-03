@@ -35,7 +35,7 @@ export const Hero = () => {
               <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
               <input type="text" placeholder="חפש לפי תחום, כישור או מילת מפתח..." className="w-full h-12 pr-12 pl-4 rounded-lg border border-white/20 bg-white/10 backdrop-blur placeholder:text-white/70 text-white focus:outline-none focus:ring-2 focus:ring-white/50" />
             </div>
-            <Button size="lg" className="bg-white text-primary hover:bg-white/90 h-12 px-8">
+            <Button size="lg" className="bg-white text-primary hover:bg-white/90 h-12 px-8 text-xl font-medium">
               חיפוש מנטורים
               <ArrowLeft className="mr-2 h-5 w-5" />
             </Button>
