@@ -22,7 +22,7 @@ export const Header = () => {
       <div className="container mx-auto px-4 h-full">
         <div className="flex items-center justify-between h-full">
         <div className="flex items-center justify-between flex-1 backdrop-blur-sm border border-white/30 rounded-none bg-transparent px-[99px] py-[4px] mx-[80px] my-[40px]">
-          <button onClick={() => navigate("/")} className="text-lg font-semibold text-primary hover:text-primary/80 transition-colors">
+          <button onClick={() => navigate("/")} className="text-lg transition-colors font-bold text-blue-950 mx-0 px-0 py-[13px]">
             דף הבית
           </button>
           
@@ -66,10 +66,10 @@ export const Header = () => {
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu> : <>
-                <Button variant="ghost" onClick={() => navigate("/auth")} className="text-black bg-white/10 hover:bg-white/20 border border-white/30 shadow-md">
+                <Button variant="ghost" onClick={() => navigate("/auth")} className="bg-white/10 hover:bg-white/20 border border-white/30 shadow-md text-slate-950 text-sm">
                   התחברות
                 </Button>
-                <Button variant="outline" onClick={() => navigate("/auth")} className="bg-white text-primary hover:bg-white/90 border-white shadow-lg font-semibold">
+                <Button variant="outline" onClick={() => navigate("/auth")} className="bg-white text-primary hover:bg-white/90 border-white shadow-lg font-semibold text-sm">
                   הרשמה
                 </Button>
               </>}
