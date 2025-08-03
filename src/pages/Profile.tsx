@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
+import { Header } from "@/components/Header";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -138,8 +139,9 @@ const Profile = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Header />
       {/* Cover Image */}
-      <div className="h-64 bg-gradient-hero relative">
+      <div className="h-64 bg-gradient-hero relative mt-16">
         {profile.cover_image_url && (
           <img 
             src={profile.cover_image_url} 
