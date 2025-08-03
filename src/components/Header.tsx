@@ -22,21 +22,21 @@ export const Header = () => {
       <div className="container mx-auto px-4 h-full">
         <div className="flex items-center justify-between h-full">
         <div className="flex items-center justify-between flex-1 px-[99px] py-[4px] my-[40px] mx-[80px]">
-          <button onClick={() => navigate("/")} className="text-lg transition-colors font-bold text-blue-950 mx-0 px-0 py-[13px]">
+          <button onClick={() => navigate("/")} className="transition-colors text-blue-950 mx-0 px-0 py-[13px] text-2xl font-extrabold">
             דף הבית
           </button>
           
           <nav className="hidden md:flex items-center gap-12 ml-auto mr-8">
-            <button onClick={() => navigate("/mentors")} className="text-white/90 hover:text-white transition-colors px-4 py-2">
+            <button onClick={() => navigate("/mentors")} className="text-white/90 hover:text-white transition-colors px-4 py-2 text-lg font-bold">
               מנטורים
             </button>
-            <button onClick={() => navigate("/how-it-works")} className="text-white/90 hover:text-white transition-colors px-4 py-2">
+            <button onClick={() => navigate("/how-it-works")} className="text-white/90 hover:text-white transition-colors px-4 py-2 text-lg font-semibold">
               איך זה עובד
             </button>
-            <button onClick={() => navigate("/about")} className="text-white/90 hover:text-white transition-colors px-4 py-2">
+            <button onClick={() => navigate("/about")} className="text-white/90 hover:text-white transition-colors px-4 py-2 text-lg font-bold">
               אודותינו
             </button>
-            <button onClick={() => navigate("/contact")} className="text-white/90 hover:text-white transition-colors px-4 py-2">
+            <button onClick={() => navigate("/contact")} className="text-white/90 hover:text-white transition-colors px-4 py-2 text-lg font-bold">
               יצירת קשר
             </button>
           </nav>
