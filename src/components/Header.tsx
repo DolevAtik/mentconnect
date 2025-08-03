@@ -161,10 +161,6 @@ export const Header = () => {
             </SheetContent>
           </Sheet>
           
-          {/* Logo בפינה הימנית */}
-          <div className="flex items-center">
-            <img src={logoNew} alt="MentConnect" className="h-20 w-auto" />
-          </div>
         </div>
         </div>
       </div>
