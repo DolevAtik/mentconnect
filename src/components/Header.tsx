@@ -22,7 +22,7 @@ export const Header = () => {
     <header className="sticky top-0 z-50 w-full border-b bg-gradient-to-r from-primary to-secondary backdrop-blur h-24">
       <div className="container mx-auto px-4 h-full">
         <div className="flex items-center justify-between h-full">
-        <div className="flex items-center justify-between flex-1">
+        <div className="flex items-center justify-between flex-1 bg-white/10 rounded-lg p-2">
           <button 
             onClick={() => navigate("/")} 
             className="text-lg font-semibold text-white hover:text-white/80 transition-colors"
