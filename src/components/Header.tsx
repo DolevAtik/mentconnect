@@ -30,7 +30,7 @@ export const Header = () => {
             דף הבית
           </button>
           
-          <nav className="hidden md:flex items-center gap-12 ml-auto">
+          <nav className="hidden md:flex items-center gap-12 ml-auto mr-8">
             <button 
               onClick={() => navigate("/mentors")} 
               className="text-white/90 hover:text-white transition-colors px-4 py-2"
