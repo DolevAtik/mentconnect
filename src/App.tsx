@@ -7,6 +7,8 @@ import { AuthProvider } from "@/hooks/useAuth";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import Profile from "./pages/Profile";
+import ProfileEdit from "./pages/ProfileEdit";
+import CompleteProfile from "./pages/CompleteProfile";
 import NotFound from "./pages/NotFound";
 import HowItWorks from "./pages/HowItWorks";
 import MentorSearch from "./pages/MentorSearch";
@@ -34,6 +36,8 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/profile/:userId" element={<Profile />} />
+            <Route path="/profile/edit" element={<ProfileEdit />} />
+            <Route path="/complete-profile" element={<CompleteProfile />} />
             <Route path="/how-it-works" element={<HowItWorks />} />
             <Route path="/mentors" element={<MentorSearch />} />
             <Route path="/contact" element={<Contact />} />
