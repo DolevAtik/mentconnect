@@ -25,7 +25,7 @@ export const Hero = () => {
             </h1>
           </div>
           <div className="mb-4">
-            <p className="text-lg md:text-xl text-white/90 font-medium tracking-wider">
+            <p className="text-xl md:text-3xl text-white/90 font-medium tracking-wider">
               Your Journey. Their Wisdom. One Connection.
             </p>
           </div>
