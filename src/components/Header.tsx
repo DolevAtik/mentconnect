@@ -33,25 +33,25 @@ export const Header = () => {
           <nav className="hidden md:flex items-center gap-12 ml-auto mr-8">
             <button 
               onClick={() => navigate("/mentors")} 
-              className="text-primary hover:text-primary/80 transition-colors px-4 py-2"
+              className="text-white/90 hover:text-white transition-colors px-4 py-2"
             >
               מנטורים
             </button>
             <button 
               onClick={() => navigate("/how-it-works")} 
-              className="text-primary hover:text-primary/80 transition-colors px-4 py-2"
+              className="text-white/90 hover:text-white transition-colors px-4 py-2"
             >
               איך זה עובד
             </button>
             <button 
               onClick={() => navigate("/about")} 
-              className="text-primary hover:text-primary/80 transition-colors px-4 py-2"
+              className="text-white/90 hover:text-white transition-colors px-4 py-2"
             >
               אודותינו
             </button>
             <button 
               onClick={() => navigate("/contact")} 
-              className="text-primary hover:text-primary/80 transition-colors px-4 py-2"
+              className="text-white/90 hover:text-white transition-colors px-4 py-2"
             >
               יצירת קשר
             </button>
