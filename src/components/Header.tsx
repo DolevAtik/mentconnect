@@ -19,7 +19,7 @@ export const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 h-24">
+    <header className="sticky top-0 z-50 w-full border-b bg-gradient-to-r from-primary to-secondary backdrop-blur h-24">
       <div className="container mx-auto px-4 h-full">
         <div className="flex items-center justify-between h-full">
         <div className="flex items-center gap-6">
@@ -28,7 +28,7 @@ export const Header = () => {
           </div>
           <button 
             onClick={() => navigate("/")} 
-            className="text-lg font-semibold text-foreground hover:text-primary transition-colors"
+            className="text-lg font-semibold text-white hover:text-white/80 transition-colors"
           >
             דף הבית
           </button>
@@ -36,25 +36,25 @@ export const Header = () => {
           <nav className="hidden md:flex items-center gap-12">
             <button 
               onClick={() => navigate("/mentors")} 
-              className="text-muted-foreground hover:text-foreground transition-colors px-4 py-2"
+              className="text-white/90 hover:text-white transition-colors px-4 py-2"
             >
               מנטורים
             </button>
             <button 
               onClick={() => navigate("/how-it-works")} 
-              className="text-muted-foreground hover:text-foreground transition-colors px-4 py-2"
+              className="text-white/90 hover:text-white transition-colors px-4 py-2"
             >
               איך זה עובד
             </button>
             <button 
               onClick={() => navigate("/about")} 
-              className="text-muted-foreground hover:text-foreground transition-colors px-4 py-2"
+              className="text-white/90 hover:text-white transition-colors px-4 py-2"
             >
               אודותינו
             </button>
             <button 
               onClick={() => navigate("/contact")} 
-              className="text-muted-foreground hover:text-foreground transition-colors px-4 py-2"
+              className="text-white/90 hover:text-white transition-colors px-4 py-2"
             >
               יצירת קשר
             </button>
@@ -66,7 +66,7 @@ export const Header = () => {
             {user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="relative h-10 w-10 rounded-full">
+                  <Button variant="ghost" className="relative h-10 w-10 rounded-full hover:bg-white/10">
                     <Avatar className="h-10 w-10">
                       <AvatarImage src={""} alt={user.email || ""} />
                       <AvatarFallback className="bg-gradient-primary text-white">
@@ -88,10 +88,10 @@ export const Header = () => {
               </DropdownMenu>
             ) : (
               <>
-                <Button variant="ghost" onClick={() => navigate("/auth")}>
+                <Button variant="ghost" onClick={() => navigate("/auth")} className="text-white hover:bg-white/10 border-white/20">
                   התחברות
                 </Button>
-                <Button variant="hero" onClick={() => navigate("/auth")}>
+                <Button variant="outline" onClick={() => navigate("/auth")} className="bg-white text-primary hover:bg-white/90 border-white">
                   הצטרפות כמנטור
                 </Button>
               </>
