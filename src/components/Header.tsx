@@ -104,7 +104,12 @@ export const Header = () => {
               <SheetContent side="right" className="w-80">
               <div className="flex flex-col space-y-6 mt-6">
                 <div className="flex items-center">
-                  <span className="text-xl font-bold text-foreground">דף הבית</span>
+                  <button 
+                    onClick={() => {navigate("/"); setIsOpen(false);}} 
+                    className="text-xl font-bold text-foreground hover:text-primary transition-colors"
+                  >
+                    דף הבית
+                  </button>
                 </div>
                 
                 <nav className="flex flex-col space-y-4">
