@@ -23,8 +23,8 @@ export const Header = () => {
       <div className="container mx-auto px-4 h-full">
         <div className="flex items-center justify-between h-full">
         <div className="flex items-center gap-6">
-          <div className="flex items-center">
-            <img src={logoNew} alt="MentConnect" className="h-16 w-auto" />
+          <div className="flex items-center mr-8">
+            <img src={logoNew} alt="MentConnect" className="h-20 w-auto" />
           </div>
           <button 
             onClick={() => navigate("/")} 
