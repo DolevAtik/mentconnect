@@ -83,7 +83,7 @@ export const Header = () => {
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" dir="rtl" className="w-80">
+              <SheetContent side="left" dir="rtl" className="w-80">
               <div className="flex flex-col space-y-6 mt-6">
                 <div className="flex items-center">
                   <button onClick={() => {
