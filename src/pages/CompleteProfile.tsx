@@ -88,7 +88,9 @@ const CompleteProfile = () => {
         first_name: formData.first_name,
         last_name: formData.last_name,
         display_name: formData.display_name || `${formData.first_name} ${formData.last_name}`,
-        user_type: formData.user_type,
+        // לא מאפשרים שינוי user_type בצד לקוח כדי להימנע משגיאה מהשרת
+        // user_type יישאר כפי שנוצר אוטומטית (לרוב 'student')
+        // user_type: formData.user_type,
         bio: formData.bio,
         title: formData.title,
         company: formData.company,

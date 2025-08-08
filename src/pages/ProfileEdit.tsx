@@ -179,21 +179,25 @@ const ProfileEdit = () => {
 
     setLoading(true);
     try {
+      const { user_type, ...rest } = profile;
       const { error } = await supabase
         .from("profiles")
         .upsert({
           user_id: user.id,
-          ...profile,
+          ...rest,
           updated_at: new Date().toISOString()
         }, {
           onConflict: 'user_id'
         });
 
       if (error) {
+        const msg = (error as any)?.message?.includes('Only administrators can change user types')
+          ? 'לא ניתן לשנות סוג משתמש מתוך העמוד. צרו קשר אם תרצו להפוך למנטור.'
+          : 'שגיאה בשמירת הפרופיל';
         toast({
           variant: "destructive",
           title: "שגיאה",
-          description: "שגיאה בשמירת הפרופיל",
+          description: msg,
         });
       } else {
         toast({
@@ -340,7 +344,7 @@ const ProfileEdit = () => {
 
               <div className="space-y-2">
                 <Label htmlFor="user-type">סוג משתמש</Label>
-                <Select value={profile.user_type} onValueChange={(value) => setProfile(prev => ({...prev, user_type: value}))}>
+                <Select value={profile.user_type} disabled>
                   <SelectTrigger>
                     <SelectValue />
                   </SelectTrigger>
@@ -349,6 +353,7 @@ const ProfileEdit = () => {
                     <SelectItem value="mentor">מנטור</SelectItem>
                   </SelectContent>
                 </Select>
+                <p className="text-sm text-muted-foreground">לא ניתן לשנות סוג משתמש בעמוד זה.</p>
               </div>
 
               <div className="space-y-2">
