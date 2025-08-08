@@ -1,9 +1,26 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Search, ArrowLeft } from "lucide-react";
 import heroImage from "@/assets/hero-image.jpg";
-import logoNew from "@/assets/logo-new.png";
 export const Hero = () => {
-  return <section className="relative min-h-[70vh] md:min-h-[600px] flex items-center overflow-visible md:overflow-hidden pt-20 md:pt-0">
+  const [q, setQ] = useState("");
+  const navigate = useNavigate();
+
+  const go = () => {
+    const term = q.trim();
+    navigate(term ? `/mentors?query=${encodeURIComponent(term)}` : "/mentors");
+  };
+
+  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      go();
+    }
+  };
+
+  return (
+    <section className="relative min-h-[70vh] md:min-h-[600px] flex items-center overflow-visible md:overflow-hidden pt-20 md:pt-0">
       {/* Background with overlay */}
       <div className="absolute inset-0">
         <img src={heroImage} alt="Mentors connecting with mentees" className="w-full h-full object-cover" />
@@ -37,16 +54,24 @@ export const Hero = () => {
           <div className="flex flex-col md:flex-row gap-4 mb-8">
             <div className="flex-1 relative">
               <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
-              <input type="text" placeholder="חפש לפי תחום, כישור או מילת מפתח..." className="w-full h-12 pr-12 pl-4 rounded-lg border border-white/20 bg-white/10 backdrop-blur placeholder:text-white/70 text-white focus:outline-none focus:ring-2 focus:ring-white/50" />
+              <input 
+                type="text" 
+                placeholder="חפש לפי תחום, כישור או מילת מפתח..." 
+                className="w-full h-12 pr-12 pl-4 rounded-lg border border-white/20 bg-white/10 backdrop-blur placeholder:text-white/70 text-white focus:outline-none focus:ring-2 focus:ring-white/50" 
+                value={q}
+                onChange={(e) => setQ(e.target.value)}
+                onKeyDown={onKeyDown}
+                aria-label="חיפוש מנטורים"
+              />
             </div>
-            <Button size="lg" className="bg-white text-primary hover:bg-white/90 h-12 px-8 text-xl font-medium">
+            <Button size="lg" className="bg-white text-primary hover:bg-white/90 h-12 px-8 text-xl font-medium" onClick={go}>
               חיפוש מנטורים
               <ArrowLeft className="mr-2 h-5 w-5" />
             </Button>
           </div>
           
           {/* Stats */}
-          <div className="flex flex-wrap gap-8 text-white/90">
+          <div className="flex flex-wrap gap-א text-white/90">
             <div>
               <div className="text-2xl font-bold">500+</div>
               <div className="text-sm">מנטורים מנוסים</div>
@@ -62,5 +87,6 @@ export const Hero = () => {
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
