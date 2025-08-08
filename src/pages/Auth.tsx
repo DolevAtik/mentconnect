@@ -213,6 +213,60 @@ const Auth = () => {
     }
   };
 
+  // Forgot password handlers
+  const handleResetPasswordRequest = async () => {
+    if (!email) {
+      toast({ variant: "destructive", title: "שגיאה", description: "יש להזין אימייל לפני שליחת קישור איפוס" });
+      return;
+    }
+    setLoading(true);
+    try {
+      const redirectUrl = `${window.location.origin}/auth`;
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: redirectUrl,
+      });
+      if (error) {
+        toast({ variant: "destructive", title: "שגיאה בשליחת קישור", description: error.message });
+      } else {
+        toast({ title: "קישור איפוס נשלח", description: "בדקו את תיבת האימייל שלכם" });
+        setShowReset(true);
+      }
+    } catch (error) {
+      toast({ variant: "destructive", title: "שגיאה", description: "אירעה שגיאה לא צפויה" });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleUpdatePassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (newPassword !== confirmPassword) {
+      toast({ variant: "destructive", title: "סיסמאות לא תואמות", description: "ודאו שהסיסמאות זהות" });
+      return;
+    }
+    const passErr = validatePassword(newPassword);
+    if (passErr) {
+      toast({ variant: "destructive", title: "סיסמה חלשה", description: passErr });
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const { error } = await supabase.auth.updateUser({ password: newPassword });
+      if (error) {
+        toast({ variant: "destructive", title: "שגיאה באיפוס", description: error.message });
+      } else {
+        toast({ title: "הסיסמה עודכנה", description: "באפשרותך להתחבר כעת" });
+        setShowReset(false);
+        navigate("/");
+      }
+    } catch (error) {
+      toast({ variant: "destructive", title: "שגיאה", description: "אירעה שגיאה לא צפויה" });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-hero">
       <Header />
@@ -274,47 +328,104 @@ const Auth = () => {
                     </div>
                   </div>
 
-                  <form onSubmit={handleSignIn} className="space-y-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="signin-email">אימייל</Label>
-                      <Input
-                        id="signin-email"
-                        type="email"
-                        placeholder="your@email.com"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                  {!showReset ? (
+                    <form onSubmit={handleSignIn} className="space-y-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="signin-email">אימייל</Label>
+                        <Input
+                          id="signin-email"
+                          type="email"
+                          placeholder="your@email.com"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          disabled={loading}
+                          required
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="signin-password">סיסמה</Label>
+                        <Input
+                          id="signin-password"
+                          type="password"
+                          placeholder="••••••••"
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                          disabled={loading}
+                          required
+                        />
+                      </div>
+                      <div className="flex justify-end">
+                        <Button
+                          type="button"
+                          variant="link"
+                          className="px-0"
+                          onClick={handleResetPasswordRequest}
+                          disabled={loading || !email}
+                        >
+                          שכחתי סיסמה
+                        </Button>
+                      </div>
+                      <Button 
+                        type="submit" 
+                        className="w-full" 
+                        size="lg"
                         disabled={loading}
-                        required
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="signin-password">סיסמה</Label>
-                      <Input
-                        id="signin-password"
-                        type="password"
-                        placeholder="••••••••"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                      >
+                        {loading ? (
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                        ) : (
+                          <>
+                            התחבר
+                            <ArrowRight className="w-4 h-4 mr-2" />
+                          </>
+                        )}
+                      </Button>
+                    </form>
+                  ) : (
+                    <form onSubmit={handleUpdatePassword} className="space-y-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="new-password">סיסמה חדשה</Label>
+                        <Input
+                          id="new-password"
+                          type="password"
+                          placeholder="••••••••"
+                          value={newPassword}
+                          onChange={(e) => setNewPassword(e.target.value)}
+                          disabled={loading}
+                          required
+                          minLength={8}
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="confirm-password">אישור סיסמה</Label>
+                        <Input
+                          id="confirm-password"
+                          type="password"
+                          placeholder="••••••••"
+                          value={confirmPassword}
+                          onChange={(e) => setConfirmPassword(e.target.value)}
+                          disabled={loading}
+                          required
+                          minLength={8}
+                        />
+                      </div>
+                      <Button 
+                        type="submit" 
+                        className="w-full" 
+                        size="lg"
                         disabled={loading}
-                        required
-                      />
-                    </div>
-                    <Button 
-                      type="submit" 
-                      className="w-full" 
-                      size="lg"
-                      disabled={loading}
-                    >
-                      {loading ? (
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                      ) : (
-                        <>
-                          התחבר
-                          <ArrowRight className="w-4 h-4 mr-2" />
-                        </>
-                      )}
-                    </Button>
-                  </form>
+                      >
+                        {loading ? (
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                        ) : (
+                          <>
+                            איפוס סיסמה
+                            <ArrowRight className="w-4 h-4 mr-2" />
+                          </>
+                        )}
+                      </Button>
+                    </form>
+                  )}
                 </div>
               </TabsContent>
 
