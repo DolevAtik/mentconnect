@@ -607,6 +607,7 @@ const Auth = () => {
                 </form>
                 </div>
               </TabsContent>
+              </Tabs>
             )}
           </CardContent>
         </Card>

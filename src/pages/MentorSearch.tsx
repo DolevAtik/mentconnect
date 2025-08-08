@@ -99,11 +99,19 @@ const MentorSearch = () => {
   const [selectedExperience, setSelectedExperience] = useState<string>("");
   const [selectedLocation, setSelectedLocation] = useState<string>("");
   const { toast } = useToast();
+  const location = useLocation();
 
   // Get all unique values for filters
   const allExpertise = Array.from(new Set(mentors.flatMap(mentor => mentor.expertise)));
   const allCategories = Array.from(new Set(mentors.map(mentor => mentor.category)));
   const allLocations = Array.from(new Set(mentors.map(mentor => mentor.location)));
+
+  // Pre-fill search from URL ?query
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const q = params.get('query');
+    if (q) setSearchQuery(q);
+  }, [location.search]);
 
   // Filter mentors based on all criteria
   useEffect(() => {
