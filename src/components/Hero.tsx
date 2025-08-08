@@ -19,7 +19,7 @@ export const Hero = () => {
             </h1>
           </div>
           <div className="mb-4">
-            <p className="text-xl text-white/90 tracking-wider font-bold md:text-4xl">.Your Journey. Their Wisdom. One Connection</p>
+            <p dir="ltr" className="text-lg text-white/90 font-bold leading-snug md:text-4xl md:leading-tight md:tracking-wide"><span className="block sm:hidden">Your Journey. Their Wisdom.</span><span className="block sm:hidden">One Connection</span><span className="hidden sm:inline">Your Journey. Their Wisdom. One Connection</span></p>
           </div>
           <h2 className="text-4xl font-bold mb-6 leading-tight md:whitespace-nowrap md:text-5xl">
             מצא את המנטור המושלם עבורך
