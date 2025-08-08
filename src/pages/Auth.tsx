@@ -383,15 +383,26 @@ const Auth = () => {
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="user-type">אני רוצה להצטרף כ...</Label>
-                    <Select value={userType} onValueChange={(value: "student" | "mentor") => setUserType(value)}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="בחר סוג משתמש" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="student">מחפש מנטור</SelectItem>
-                        <SelectItem value="mentor">מנטור</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <div className="grid grid-cols-2 gap-3" role="group" aria-label="בחירת סוג משתמש">
+                      <Button
+                        type="button"
+                        variant={userType === "student" ? "default" : "outline"}
+                        className={`h-12 w-full justify-center ${userType === "student" ? "ring-2 ring-primary shadow-md" : ""}`}
+                        onClick={() => setUserType("student")}
+                      >
+                        <User className="w-4 h-4 ml-2" />
+                        מחפש מנטור
+                      </Button>
+                      <Button
+                        type="button"
+                        variant={userType === "mentor" ? "default" : "outline"}
+                        className={`h-12 w-full justify-center ${userType === "mentor" ? "ring-2 ring-primary shadow-md" : ""}`}
+                        onClick={() => setUserType("mentor")}
+                      >
+                        <UserCheck className="w-4 h-4 ml-2" />
+                        מנטור
+                      </Button>
+                    </div>
                   </div>
                   <Button 
                     type="submit" 
