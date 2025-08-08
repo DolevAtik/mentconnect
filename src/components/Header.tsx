@@ -18,11 +18,11 @@ export const Header = () => {
     await signOut();
     navigate("/");
   };
-  return <header className="sticky top-0 z-50 w-full border-b bg-gradient-to-r from-primary to-secondary backdrop-blur h-24">
+  return <header dir="rtl" className="sticky top-0 z-50 w-full border-b bg-gradient-to-r from-primary to-secondary backdrop-blur h-16 md:h-24">
       <div className="container mx-auto px-4 h-full">
         <div className="flex items-center justify-between h-full">
-        <div className="flex items-center justify-between flex-1 px-[99px] py-[4px] my-[40px] mx-[80px]">
-          <button onClick={() => navigate("/")} className="transition-colors text-blue-950 mx-0 px-0 py-[13px] text-2xl font-extrabold bg-black/[0.12] rounded-xl">דף הבית  </button>
+        <div className="flex items-center justify-between flex-1 px-2 md:px-6 py-2 my-0 mx-0">
+          <button onClick={() => navigate("/")} className="hidden md:inline-flex transition-colors text-blue-950 mx-0 px-0 py-[13px] text-2xl font-extrabold bg-black/[0.12] rounded-xl">דף הבית  </button>
           
           <nav className="hidden md:flex items-center gap-12 ml-auto mr-8">
             <button onClick={() => navigate("/mentors")} className="text-white/90 hover:text-white transition-colors px-4 py-2 text-lg font-bold">
@@ -53,7 +53,7 @@ export const Header = () => {
                     </Avatar>
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
+                <DropdownMenuContent align="end" className="z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border">
                   <DropdownMenuItem onClick={() => navigate(`/profile/${user.id}`)}>
                     <User className="mr-2 h-4 w-4" />
                     הפרופיל שלי
@@ -80,7 +80,7 @@ export const Header = () => {
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-              <SheetContent side="right" className="w-80">
+              <SheetContent side="right" dir="rtl" className="w-80">
               <div className="flex flex-col space-y-6 mt-6">
                 <div className="flex items-center">
                   <button onClick={() => {
