@@ -19,7 +19,7 @@ export const Hero = () => {
             </h1>
           </div>
           <div className="mb-4">
-            <p dir="rtl" className="text-lg text-white/90 font-bold leading-snug md:text-4xl md:leading-tight md:tracking-wide">המסע שלך, הניסיון שלהם, הצלחה משותפת.</p>
+            <p dir="rtl" className="font-bold leading-snug md:leading-tight md:tracking-wide text-black md:text-4xl text-2xl">המסע שלך, הניסיון שלהם, ההצלחה משותפת.</p>
           </div>
           <h2 className="text-4xl font-bold mb-6 leading-tight md:whitespace-nowrap md:text-5xl">
             מצא את המנטור המושלם עבורך
