@@ -217,6 +217,8 @@ const Auth = () => {
   const handleResetPasswordRequest = async () => {
     if (!email) {
       toast({ variant: "destructive", title: "שגיאה", description: "יש להזין אימייל לפני שליחת קישור איפוס" });
+      const el = document.getElementById('signin-email') as HTMLInputElement | null;
+      el?.focus();
       return;
     }
     setLoading(true);
@@ -360,7 +362,7 @@ const Auth = () => {
                           variant="link"
                           className="px-0"
                           onClick={handleResetPasswordRequest}
-                          disabled={loading || !email}
+                          disabled={loading}
                         >
                           שכחתי סיסמה
                         </Button>
