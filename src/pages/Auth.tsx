@@ -18,18 +18,33 @@ const Auth = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [userType, setUserType] = useState<"student" | "mentor">("student");
+  const [showReset, setShowReset] = useState(false);
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const { toast } = useToast();
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if user is already logged in
+    const inRecovery =
+      window.location.hash.includes('type=recovery') ||
+      window.location.search.includes('type=recovery');
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
+      if (event === 'PASSWORD_RECOVERY') {
+        setShowReset(true);
+      }
+    });
+
     const checkUser = async () => {
       const { data: { session } } = await supabase.auth.getSession();
-      if (session) {
+      if (inRecovery) setShowReset(true);
+      if (session && !inRecovery) {
         navigate("/");
       }
     };
     checkUser();
+
+    return () => subscription.unsubscribe();
   }, [navigate]);
 
   const validatePassword = (password: string) => {
