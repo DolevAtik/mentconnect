@@ -231,7 +231,6 @@ const Auth = () => {
         toast({ variant: "destructive", title: "שגיאה בשליחת קישור", description: error.message });
       } else {
         toast({ title: "קישור איפוס נשלח", description: "בדקו את תיבת האימייל שלכם" });
-        setShowReset(true);
       }
     } catch (error) {
       toast({ variant: "destructive", title: "שגיאה", description: "אירעה שגיאה לא צפויה" });
@@ -284,12 +283,70 @@ const Auth = () => {
 
         <Card className="backdrop-blur-sm bg-white/95 shadow-large border-0">
           <CardHeader>
-            <CardTitle className="text-center text-2xl">ברוכים הבאים</CardTitle>
-            <CardDescription className="text-center">
-              צור חשבון חדש או התחבר לחשבון קיים
-            </CardDescription>
+            {showReset ? (
+              <>
+                <CardTitle className="text-center text-2xl">איפוס סיסמה</CardTitle>
+                <CardDescription className="text-center">
+                  הזן סיסמה חדשה כדי להשלים את האיפוס
+                </CardDescription>
+              </>
+            ) : (
+              <>
+                <CardTitle className="text-center text-2xl">ברוכים הבאים</CardTitle>
+                <CardDescription className="text-center">
+                  צור חשבון חדש או התחבר לחשבון קיים
+                </CardDescription>
+              </>
+            )}
           </CardHeader>
           <CardContent>
+            {showReset ? (
+              <div className="space-y-4">
+                <form onSubmit={handleUpdatePassword} className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="new-password">סיסמה חדשה</Label>
+                    <Input
+                      id="new-password"
+                      type="password"
+                      placeholder="••••••••"
+                      value={newPassword}
+                      onChange={(e) => setNewPassword(e.target.value)}
+                      disabled={loading}
+                      required
+                      minLength={8}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="confirm-password">אישור סיסמה</Label>
+                    <Input
+                      id="confirm-password"
+                      type="password"
+                      placeholder="••••••••"
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      disabled={loading}
+                      required
+                      minLength={8}
+                    />
+                  </div>
+                  <Button 
+                    type="submit" 
+                    className="w-full" 
+                    size="lg"
+                    disabled={loading}
+                  >
+                    {loading ? (
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                    ) : (
+                      <>
+                        איפוס סיסמה
+                        <ArrowRight className="w-4 h-4 mr-2" />
+                      </>
+                    )}
+                  </Button>
+                </form>
+              </div>
+            ) : (
             <Tabs defaultValue="signin" className="w-full">
               <TabsList className="grid w-full grid-cols-2 mb-6">
                 <TabsTrigger value="signin" className="flex items-center gap-2">
@@ -550,7 +607,7 @@ const Auth = () => {
                 </form>
                 </div>
               </TabsContent>
-            </Tabs>
+            )}
           </CardContent>
         </Card>
       </div>
