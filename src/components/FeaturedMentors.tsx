@@ -27,7 +27,7 @@ const mentors = [
     responseTime: "תוך 2 שעות"
   },
   {
-    name: "מיכל רוזנברג",
+    name: "חנה רוזנברג",
     title: "UX Design Lead ב-Meta",
     image: mentor3,
     rating: 5.0,
