@@ -3,7 +3,7 @@ import { Search, ArrowLeft } from "lucide-react";
 import heroImage from "@/assets/hero-image.jpg";
 import logoNew from "@/assets/logo-new.png";
 export const Hero = () => {
-  return <section className="relative min-h-[600px] flex items-center overflow-hidden">
+  return <section className="relative min-h-[70vh] md:min-h-[600px] flex items-center overflow-visible md:overflow-hidden pt-20 md:pt-0">
       {/* Background with overlay */}
       <div className="absolute inset-0">
         <img src={heroImage} alt="Mentors connecting with mentees" className="w-full h-full object-cover" />
@@ -11,7 +11,7 @@ export const Hero = () => {
       </div>
       
       {/* Content */}
-      <div className="relative container mx-auto px-4 text-white animate-fade-in">
+      <div className="relative container mx-auto px-4 text-white animate-fade-in" dir="rtl">
         <div className="max-w-4xl mx-auto text-center">
           <div className="mb-8">
             <h1 className="text-6xl mb-4 tracking-tight text-blue-500 font-extrabold md:text-9xl">
@@ -21,7 +21,7 @@ export const Hero = () => {
           <div className="mb-4">
             <p className="text-xl text-white/90 tracking-wider font-bold md:text-4xl">.Your Journey. Their Wisdom. One Connection</p>
           </div>
-          <h2 className="text-4xl font-bold mb-6 leading-tight whitespace-nowrap md:text-5xl">
+          <h2 className="text-4xl font-bold mb-6 leading-tight md:whitespace-nowrap md:text-5xl">
             מצא את המנטור המושלם עבורך
           </h2>
           
