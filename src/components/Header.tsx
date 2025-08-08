@@ -26,6 +26,129 @@ export const Header = () => {
         <div className="flex items-center justify-between h-full">
         <div className="flex items-center justify-between flex-1 px-2 md:px-6 py-2 my-0 mx-0">
           <button onClick={() => navigate("/")} className="hidden md:inline-flex transition-colors text-blue-950 mx-0 px-0 py-[13px] text-2xl font-extrabold bg-black/[0.12] rounded-xl">דף הבית  </button>
+          {/* Mobile Menu */}
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" className="ml-auto md:hidden">
+                <Menu className="h-5 w-5" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" dir="rtl" className="w-80">
+              <div className="flex flex-col space-y-6 mt-6">
+                <div className="flex items-center">
+                  <button
+                    onClick={() => {
+                      navigate("/");
+                      setIsOpen(false);
+                    }}
+                    className="text-xl font-bold text-foreground hover:text-primary transition-colors"
+                  >
+                    דף הבית
+                  </button>
+                </div>
+
+                <nav className="flex flex-col space-y-4">
+                  <button
+                    onClick={() => {
+                      navigate("/mentors");
+                      setIsOpen(false);
+                    }}
+                    className="text-right text-muted-foreground hover:text-foreground transition-colors py-2"
+                  >
+                    מנטורים
+                  </button>
+                  <button
+                    onClick={() => {
+                      navigate("/how-it-works");
+                      setIsOpen(false);
+                    }}
+                    className="text-right text-muted-foreground hover:text-foreground transition-colors py-2"
+                  >
+                    איך זה עובד
+                  </button>
+                  <button
+                    onClick={() => {
+                      navigate("/about");
+                      setIsOpen(false);
+                    }}
+                    className="text-right text-muted-foreground hover:text-foreground transition-colors py-2"
+                  >
+                    אודותינו
+                  </button>
+                  <button
+                    onClick={() => {
+                      navigate("/contact");
+                      setIsOpen(false);
+                    }}
+                    className="text-right text-muted-foreground hover:text-foreground transition-colors py-2"
+                  >
+                    יצירת קשר
+                  </button>
+                  <button
+                    onClick={() => {
+                      navigate("/faq");
+                      setIsOpen(false);
+                    }}
+                    className="text-right text-muted-foreground hover:text-foreground transition-colors py-2"
+                  >
+                    שאלות נפוצות
+                  </button>
+                </nav>
+
+                <div className="border-t pt-6">
+                  {user ? (
+                    <div className="flex flex-col space-y-4">
+                      <Button
+                        variant="ghost"
+                        onClick={() => {
+                          navigate(`/profile/${user.id}`);
+                          setIsOpen(false);
+                        }}
+                        className="justify-start"
+                      >
+                        <User className="mr-2 h-4 w-4" />
+                        הפרופיל שלי
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        onClick={() => {
+                          handleSignOut();
+                          setIsOpen(false);
+                        }}
+                        className="justify-start"
+                      >
+                        <LogOut className="mr-2 h-4 w-4" />
+                        התנתק
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className="flex flex-col space-y-4">
+                      <Button
+                        variant="ghost"
+                        onClick={() => {
+                          navigate("/auth");
+                          setIsOpen(false);
+                        }}
+                        className="w-full"
+                      >
+                        התחברות
+                      </Button>
+                      <Button
+                        variant="hero"
+                        onClick={() => {
+                          navigate("/auth");
+                          setIsOpen(false);
+                        }}
+                        className="w-full"
+                      >
+                        הצטרפות כמנטור
+                      </Button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </SheetContent>
+          </Sheet>
           
           <nav className="hidden md:flex items-center gap-12 ml-auto mr-8">
             <button onClick={() => navigate("/mentors")} className="text-white/90 hover:text-white transition-colors px-4 py-2 text-lg font-bold">
@@ -77,90 +200,6 @@ export const Header = () => {
           </div>
           
             {/* Mobile Menu */}
-            <Sheet open={isOpen} onOpenChange={setIsOpen}>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="md:hidden">
-                  <Menu className="h-5 w-5" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="right" dir="rtl" className="w-80">
-              <div className="flex flex-col space-y-6 mt-6">
-                <div className="flex items-center">
-                  <button onClick={() => {
-                    navigate("/");
-                    setIsOpen(false);
-                  }} className="text-xl font-bold text-foreground hover:text-primary transition-colors">
-                    דף הבית
-                  </button>
-                </div>
-                
-                <nav className="flex flex-col space-y-4">
-                  <button onClick={() => {
-                    navigate("/mentors");
-                    setIsOpen(false);
-                  }} className="text-right text-muted-foreground hover:text-foreground transition-colors py-2">
-                    מנטורים
-                  </button>
-                  <button onClick={() => {
-                    navigate("/how-it-works");
-                    setIsOpen(false);
-                  }} className="text-right text-muted-foreground hover:text-foreground transition-colors py-2">
-                    איך זה עובד
-                  </button>
-                  <button onClick={() => {
-                    navigate("/about");
-                    setIsOpen(false);
-                  }} className="text-right text-muted-foreground hover:text-foreground transition-colors py-2">
-                    אודותינו
-                  </button>
-                  <button onClick={() => {
-                    navigate("/contact");
-                    setIsOpen(false);
-                  }} className="text-right text-muted-foreground hover:text-foreground transition-colors py-2">
-                    יצירת קשר
-                  </button>
-                  <button onClick={() => {
-                    navigate("/faq");
-                    setIsOpen(false);
-                  }} className="text-right text-muted-foreground hover:text-foreground transition-colors py-2">
-                    שאלות נפוצות
-                  </button>
-                </nav>
-                
-                <div className="border-t pt-6">
-                  {user ? <div className="flex flex-col space-y-4">
-                      <Button variant="ghost" onClick={() => {
-                      navigate(`/profile/${user.id}`);
-                      setIsOpen(false);
-                    }} className="justify-start">
-                        <User className="mr-2 h-4 w-4" />
-                        הפרופיל שלי
-                      </Button>
-                      <Button variant="ghost" onClick={() => {
-                      handleSignOut();
-                      setIsOpen(false);
-                    }} className="justify-start">
-                        <LogOut className="mr-2 h-4 w-4" />
-                        התנתק
-                      </Button>
-                    </div> : <div className="flex flex-col space-y-4">
-                      <Button variant="ghost" onClick={() => {
-                      navigate("/auth");
-                      setIsOpen(false);
-                    }} className="w-full">
-                        התחברות
-                      </Button>
-                      <Button variant="hero" onClick={() => {
-                      navigate("/auth");
-                      setIsOpen(false);
-                    }} className="w-full">
-                        הצטרפות כמנטור
-                      </Button>
-                    </div>}
-                </div>
-              </div>
-            </SheetContent>
-          </Sheet>
           
         </div>
         </div>
